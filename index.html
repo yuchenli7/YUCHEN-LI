@@ -496,13 +496,37 @@
                 gap: 40px 0;
             }
 
-            /* 手机端放大浏览灯箱样式优化 */
-            .lightbox-wrapper { max-width: 92vw; }
-            .lightbox-wrapper img { max-height: 65vh; }
-            .lightbox-btn { font-size: 30px; opacity: 0.4; } /* 手机端适当提高控制箭头常驻可见度 */
-            .lightbox-prev { left: -35px; } /* 缩窄两侧箭头悬空距离 */
-            .lightbox-next { right: -35px; }
-            .lightbox-close { top: -50px; right: 10px; }
+/* 手机端放大浏览灯箱样式优化 */
+            .lightbox-wrapper { 
+                max-width: 95vw; 
+                position: relative; /* 确保相对定位基准 */
+            }
+            .lightbox-wrapper img { 
+                max-height: 60vh; 
+            }
+
+            /* 【关键修复】确保按钮在屏幕内且清晰可见 */
+            .lightbox-btn { 
+                position: fixed !important; /* 强制定位在屏幕视口 */
+                z-index: 9999 !important;   /* 确保层级最高 */
+                font-size: 30px !important; 
+                opacity: 0.8 !important;    /* 增加透明度，确保可见 */
+                padding: 15px !important;   /* 增大点击区域 */
+                top: 50% !important;        /* 垂直居中 */
+                transform: translateY(-50%); 
+            }
+
+            /* 箭头固定在屏幕两侧边缘内 */
+            .lightbox-prev { left: 5px !important; }
+            .lightbox-next { right: 5px !important; }
+
+            /* 关闭键固定在右上角 */
+            .lightbox-close { 
+                position: fixed !important;
+                top: 10px !important; 
+                right: 15px !important; 
+                font-size: 35px !important;
+            }
             
             #tab-home:checked ~ main footer {
                 position: relative; /* 手机端跟随在长流瀑布最下方即可，防止重叠 */
